@@ -12,7 +12,7 @@ connection_parameters = pika.ConnectionParameters(
 channel = pika.BlockingConnection(connection_parameters).channel()
 
 channel.basic_publish(
-    exchange="data_exchange",
+    exchange="dados_exchage",
     routing_key="",
     body="estouMandandoUmaMensagem",
     properties=pika.BasicProperties(
