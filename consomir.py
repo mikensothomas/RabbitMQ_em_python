@@ -23,6 +23,6 @@ channel.basic_consume(
     on_message_callback=minha_callback
 )
 
-print(f'Listen RabbitMQ on Port 5672')
+print(f'Escutando na porta: 5672')
 channel.start_consuming()
 
