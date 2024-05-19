@@ -14,9 +14,9 @@ channel = connection.channel()
 
 try:
     while True:
-        mensagem = input("Digite a mensagem ou 's' ou 'S' para encerrar: ")
+        mensagem = input("Digite a mensagem (ou 'sair' para encerrar): ")
         
-        if mensagem.lower() == 's' or 'S':
+        if mensagem.lower() == 'sair':
             break
         
         channel.basic_publish(
