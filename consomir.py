@@ -1,7 +1,7 @@
 import pika
 
 def minha_callback(ch, method, properties, body):
-    print(body)
+    print(f"Mensagem: {body.decode('utf-8')}")
 
 connection_parameters = pika.ConnectionParameters(
     host="localhost",
@@ -12,17 +12,19 @@ connection_parameters = pika.ConnectionParameters(
     )
 )
 
-channel = pika.BlockingConnection(connection_parameters).channel()
+connection = pika.BlockingConnection(connection_parameters)
+channel = connection.channel()
+
 channel.queue_declare(
     queue="dados_fila",
     durable=True
 )
+
 channel.basic_consume(
     queue="dados_fila",
     auto_ack=True,
     on_message_callback=minha_callback
 )
 
-print(f'Escutando na porta: 5672')
+print('Escutando na porta: 5672')
 channel.start_consuming()
-
